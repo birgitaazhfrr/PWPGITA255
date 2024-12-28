@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #87CEEB, #ffffff);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 400px;
+            margin: 80px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #4A00E0;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+        form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #4A00E0;
+        }
+        form input, form select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #FFD700;
+            color: #333333;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #FFCC00;
+        }
+        a {
+            color: #4A00E0;
+            text-decoration: none;
+            display: block;
+            margin-top: 10px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Registrasi Pengguna</h1>
+        <form method="POST" action="/register">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Masukkan username Anda" required>
+            
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Masukkan email Anda" required>
+            
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Masukkan password Anda" required>
+            
+            <label for="role">Role</label>
+            <select id="role" name="role" required>
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+            </select>
+            
+            <button type="submit">Register</button>
+            <a href="/login">Sudah punya akun? Login di sini</a>
+        </form>
+    </div>
+</body>
+</html>

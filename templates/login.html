@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #cce7ff, #f8f9fa);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            color: #5a33c7;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        form .form-label {
+            color: #5a33c7;
+            font-weight: bold;
+            text-align: left;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        form input {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        button {
+            background-color: #ffd700;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: #000;
+            font-weight: bold;
+            width: 100%;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #e6c200;
+        }
+
+        a {
+            color: #5a33c7;
+            text-decoration: none;
+            font-size: 14px;
+            margin-top: 10px;
+            display: block;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .logout {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Sistem Manajemen Pengguna</h2>
+        <h4>Login</h4>
+        <form method="POST" action="/login">
+            <div>
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" name="email" placeholder="Masukkan email Anda" required>
+            </div>
+            <div>
+                <label for="password" class="form-label">Password</label>
+                <input type="password" id="password" name="password" placeholder="Masukkan password Anda" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <a href="/register">Belum Punya Akun? Daftar Disini</a>
+    </div>
+</body>
+</html>
