@@ -1,13 +1,16 @@
 from flask import Flask, render_template, request, redirect, session, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
-import os
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 db = SQLAlchemy(app)
 
+# Database Model
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(150), nullable=False, unique=True)
@@ -15,13 +18,24 @@ class User(db.Model):
     email = db.Column(db.String(150), nullable=False, unique=True)
     password_hash = db.Column(db.String(200), nullable=False)
 
-@app.before_first_request
+# Buat database dan tambahkan pengguna admin awal
 def create_tables():
-    db.create_all()
+    with app.app_context():
+        db.create_all()
+        if User.query.count() == 0: 
+            admin_user = User(
+                username="admin",
+                role="Admin",
+                email="birgitaegiazh.com",
+                password_hash=generate_password_hash("admin123", method='pbkdf2:sha256')
+            )
+            db.session.add(admin_user)
+            db.session.commit()
 
+# Routes
 @app.route('/')
 def index():
-    return redirect(url_for('login'))
+    return render_template('index.html')  # Render file index.html
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -31,7 +45,7 @@ def register():
         email = request.form['email']
         password = request.form['password']
 
-        hashed_password = generate_password_hash(password, method='sha256')
+        hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
         new_user = User(username=username, role=role, email=email, password_hash=hashed_password)
 
         try:
@@ -55,6 +69,7 @@ def login():
             session['user_id'] = user.id
             session['username'] = user.username
             session['role'] = user.role
+            flash(f'Welcome, {user.username}!', 'success')
             return redirect(url_for('dashboard'))
         else:
             flash('Login failed. Check your email and password.', 'danger')
@@ -82,7 +97,7 @@ def add_user():
         email = request.form['email']
         password = request.form['password']
 
-        hashed_password = generate_password_hash(password, method='sha256')
+        hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
         new_user = User(username=username, role=role, email=email, password_hash=hashed_password)
 
         try:
@@ -139,15 +154,5 @@ def logout():
     return redirect(url_for('login'))
 
 if __name__ == '__main__':
-    if not os.path.exists('users.db'):
-        db.create_all()
+    create_tables()
     app.run(debug=True)
-
-@app.route('/dashboard')
-def dashboard():
-    if 'user_id' not in session:
-        flash('You need to login first.', 'warning')
-        return redirect(url_for('login'))
-
-    users = User.query.all()
-    return render_template('dashboard.html', users=users, role=session.get('role'))

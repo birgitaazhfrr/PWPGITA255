@@ -7,18 +7,24 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
             margin: 0;
             padding: 0;
+            background: linear-gradient(to bottom, #87CEEB, #ffffff);
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         .container {
-            width: 80%;
-            margin: 50px auto;
-            background-color: white;
+            width: 90%;
+            max-width: 1000px;
+            margin: 20px auto;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
         }
 
         header {
@@ -29,34 +35,25 @@
         }
 
         header h1 {
+            color: #4A00E0;
             font-size: 24px;
-            color: #333;
+            margin: 0;
         }
 
-        header .actions .btn {
+        header .actions a {
             text-decoration: none;
             padding: 10px 15px;
+            margin-left: 10px;
+            color: white;
+            background-color: #4A00E0;
             border-radius: 5px;
             font-size: 14px;
-            margin-left: 10px;
+            font-weight: bold;
+            transition: background-color 0.3s;
         }
 
-        .btn-primary {
-            background-color: #007bff;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: #0056b3;
-        }
-
-        .btn-danger {
-            background-color: #dc3545;
-            color: white;
-        }
-
-        .btn-danger:hover {
-            background-color: #a71d2a;
+        header .actions a:hover {
+            background-color: #3b00b2;
         }
 
         table {
@@ -72,28 +69,58 @@
         }
 
         table th {
+            background-color: #4A00E0;
+            color: white;
+        }
+
+        table tbody tr:nth-child(even) {
             background-color: #f8f9fa;
-            color: #333;
         }
 
         table tbody tr:hover {
-            background-color: #f1f1f1;
+            background-color: #e9ecef;
         }
 
-        .btn-sm {
+        table .btn-sm {
             padding: 5px 10px;
             font-size: 12px;
             text-decoration: none;
             border-radius: 4px;
+            color: white;
         }
 
         .btn-warning {
             background-color: #ffc107;
-            color: black;
         }
 
         .btn-warning:hover {
             background-color: #e0a800;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background-color: #a71d2a;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #4A00E0;
+            color: white;
+            font-size: 14px;
+            margin-top: auto;
+        }
+
+        footer a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -102,8 +129,8 @@
         <header>
             <h1>Dashboard</h1>
             <div class="actions">
-                <a href="/add_user" class="btn btn-primary">Tambah Pengguna</a>
-                <a href="/logout" class="btn btn-danger">Logout</a>
+                <a href="/add_user">Tambah Pengguna</a>
+                <a href="/logout">Logout</a>
             </div>
         </header>
 
@@ -114,7 +141,7 @@
                     <th>Username</th>
                     <th>Role</th>
                     <th>Email</th>
-                    <th>Actions</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -125,19 +152,23 @@
                     <td>{{ user.role }}</td>
                     <td>{{ user.email }}</td>
                     <td>
-                        <a href="/edit_user/{{ user.id }}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="/edit_user/{{ user.id }}" class="btn-sm btn-warning">Edit</a>
                         <form action="/delete_user/{{ user.id }}" method="POST" style="display:inline;">
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            <button type="submit" class="btn-sm btn-danger">Hapus</button>
                         </form>
                     </td>
                 </tr>
                 {% else %}
                 <tr>
-                    <td colspan="5">No users found.</td>
+                    <td colspan="5">Tidak ada pengguna.</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
+
+    <footer>
+        &copy; 2024 Sistem Manajemen Pengguna | <a href="mailto:birgitagita0@gmail.com">Hubungi Kami</a>
+    </footer>
 </body>
 </html>

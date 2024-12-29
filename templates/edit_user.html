@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit User</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #87CEEB, #ffffff);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 80px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #4A00E0;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+        form label {
+            display: block;
+            text-align: left;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #4A00E0;
+        }
+
+        form input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        form input:focus {
+            outline: none;
+            border-color: #4A00E0;
+            box-shadow: 0px 0px 4px rgba(74, 0, 224, 0.5);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4A00E0;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #3b00b2;
+        }
+
+        a {
+            color: #4A00E0;
+            text-decoration: none;
+            margin-top: 10px;
+            display: block;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Edit User</h1>
+        <form action="" method="POST">
+            <!-- Input Username -->
+            <label for="username">Username</label>
+            <input 
+                type="text" 
+                id="username" 
+                name="username" 
+                value="{{ user.username }}" 
+                placeholder="Masukkan username Anda" 
+                required>
+            
+            <!-- Input Role -->
+            <label for="role">Role</label>
+            <input 
+                type="text" 
+                id="role" 
+                name="role" 
+                value="{{ user.role }}" 
+                placeholder="Masukkan role pengguna" 
+                required>
+            
+            <!-- Input Email -->
+            <label for="email">Email</label>
+            <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                value="{{ user.email }}" 
+                placeholder="Masukkan email Anda" 
+                required>
+            
+            <!-- Tombol Submit -->
+            <button type="submit">Update User</button>
+            <a href="/dashboard">Kembali ke Dashboard</a>
+        </form>
+    </div>
+</body>
+</html>

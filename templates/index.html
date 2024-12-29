@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Sistem Manajemen Pengguna</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #87CEEB, #ffffff);
+            color: #333;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #4A00E0;
+            color: white;
+            padding: 15px 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        header .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        nav a {
+            text-decoration: none;
+            margin: 0 15px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+        nav a:hover {
+            color: #FFD700;
+        }
+        main {
+            text-align: center;
+            padding: 50px;
+            flex: 1;
+        }
+        main h1 {
+            font-size: 36px;
+            color: #4A00E0;
+        }
+        main p {
+            font-size: 18px;
+            color: #555;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+        .btn-container {
+            margin-top: 30px;
+        }
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #4A00E0;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 10px;
+            transition: background-color 0.3s ease-in-out;
+        }
+        .btn:hover {
+            background-color: #3b00b2;
+        }
+        footer {
+            text-align: center;
+            background-color: #4A00E0;
+            color: white;
+            padding: 15px;
+            font-size: 14px;
+            margin-top: auto;
+        }
+        footer a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Sistem Manajemen Pengguna</div>
+        <nav>
+            <a href="{{ url_for('login') }}"></a>
+            <a href="{{ url_for('register') }}"></a>
+        </nav>
+    </header>
+    <main>
+        <h1>Selamat Datang</h1>
+        <p>Selamat datang di Sistem Manajemen Pengguna. Mulailah dengan login atau daftar akun baru!</p>
+        <div class="btn-container">
+            <a href="{{ url_for('login') }}" class="btn">Login</a>
+            <a href="{{ url_for('register') }}" class="btn">Daftar</a>
+        </div>
+    </main>
+    <footer>
+        &copy; 2024 Sistem Manajemen Pengguna | <a href="mailto:birgitagita0@gmail.com">Hubungi Kami</a>
+    </footer>
+</body>
+</html>
